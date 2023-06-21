@@ -1088,21 +1088,21 @@ impl<'i> Statement<'i> {
                 Instr::Bytes(BytesOp::Con(idx! {2}, idx! {3}, idx! {4}, idx! {0}, idx! {1}))
             }
             Operator::find => {
-                let _: RegS = reg! {0};
                 let _: RegS = reg! {1};
-                let reg: RegA = reg! {3};
-                let idx: Reg32 = idx! {3};
-                if reg != RegA::A16 || idx != Reg32::Reg1 {
+                let _: RegS = reg! {2};
+                let reg: RegA = reg! {0};
+                let idx: Reg32 = idx! {0};
+                if reg != RegA::A16 || idx != Reg32::Reg0 {
                     issues.push_error(
                         SemanticError::OperandWrongReg {
                             operator: self.operator.0,
-                            pos: 3,
+                            pos: 0,
                             expected: "a16[0] register",
                         },
-                        self.operands[3].as_span(),
+                        self.operands[0].as_span(),
                     );
                 }
-                Instr::Bytes(BytesOp::Find(idx! {0}, idx! {1}))
+                Instr::Bytes(BytesOp::Find(idx! {1}, idx! {2}))
             }
             Operator::extr => {
                 let _: RegS = reg! {1};
