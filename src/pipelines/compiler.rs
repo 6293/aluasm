@@ -1070,10 +1070,10 @@ impl<'i> Statement<'i> {
                 Instr::Bytes(BytesOp::Cnt(idx! {1}, idx! {2}, idx! {0}))
             }
             Operator::con => {
-                let _: RegS = reg! {0};
-                let _: RegS = reg! {1};
-                for n in 1..4 {
-                    let reg: RegA = reg! {n+1};
+                let _: RegS = reg! {2};
+                let _: RegS = reg! {3};
+                for n in [0, 1, 4] {
+                    let reg: RegA = reg! {n};
                     if reg != RegA::A16 {
                         issues.push_error(
                             SemanticError::OperandWrongReg {
@@ -1085,7 +1085,7 @@ impl<'i> Statement<'i> {
                         );
                     }
                 }
-                Instr::Bytes(BytesOp::Con(idx! {0}, idx! {1}, idx! {2}, idx! {3}, idx! {4}))
+                Instr::Bytes(BytesOp::Con(idx! {2}, idx! {3}, idx! {4}, idx! {0}, idx! {1}))
             }
             Operator::find => {
                 let _: RegS = reg! {0};
